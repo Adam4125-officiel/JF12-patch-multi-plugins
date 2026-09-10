@@ -1,0 +1,27 @@
+[submodule "plugins/anilist"]
+	path = plugins/anilist
+	url = https://github.com/jellyfin/jellyfin-plugin-anilist
+[submodule "plugins/custom-tabs"]
+	path = plugins/custom-tabs
+	url = https://github.com/IAmParadox27/jellyfin-plugin-custom-tabs
+[submodule "plugins/editors-choice"]
+	path = plugins/editors-choice
+	url = https://github.com/lachlandcp/jellyfin-editors-choice-plugin
+[submodule "plugins/opds"]
+	path = plugins/opds
+	url = https://github.com/jellyfin/jellyfin-plugin-opds
+[submodule "plugins/opensubtitles"]
+	path = plugins/opensubtitles
+	url = https://github.com/jellyfin/jellyfin-plugin-opensubtitles
+[submodule "plugins/playbackreporting"]
+	path = plugins/playbackreporting
+	url = https://github.com/jellyfin/jellyfin-plugin-playbackreporting
+[submodule "plugins/reports"]
+	path = plugins/reports
+	url = https://github.com/jellyfin/jellyfin-plugin-reports
+[submodule "plugins/skinmanager"]
+	path = plugins/skinmanager
+	url = https://github.com/danieladov/jellyfin-plugin-skin-manager
+[submodule "plugins/jellybulletin"]
+	path = plugins/jellybulletin
+	url = https://github.com/skijk/jellyfin-plugin-jellybulletin
