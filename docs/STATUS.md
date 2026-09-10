@@ -1,11 +1,11 @@
 # Plugin Status
 
-Snapshot taken 2026-09-10, right after scaffolding. No patching has happened yet.
+Snapshot taken 2026-09-10. Scaffolding + first patching pass in progress (custom-tabs, editors-choice, skinmanager).
 
 | Plugin | Upstream repo | Current targetAbi | JF12 status | Notes |
 |---|---|---|---|---|
 | anilist | [jellyfin/jellyfin-plugin-anilist](https://github.com/jellyfin/jellyfin-plugin-anilist) | `12.0.0.0` (net10.0, `Jellyfin.Controller 12.*-*`) | upstream shipped it | build.yaml and .csproj already target JF12 on the default branch. No patch needed — just track upstream releases. |
-| custom-tabs | [IAmParadox27/jellyfin-plugin-custom-tabs](https://github.com/IAmParadox27/jellyfin-plugin-custom-tabs) | no build.yaml/meta.json — csproj drives target via a `JellyfinVersion` MSBuild property, currently `10.11.2` → net9.0 | needs patch | No manifest file at all; targetAbi isn't declared the usual way. GUID (in `CustomTabsPlugin.cs`): `fbacd0b6-fd46-4a05-b0a4-2045d6a135b0`. Multi-version build logic (10.10.7 / 10.11.0 / 10.11 conditionals) will need a JF12 branch added carefully without breaking the GUID or existing targets. |
+| custom-tabs | [IAmParadox27/jellyfin-plugin-custom-tabs](https://github.com/IAmParadox27/jellyfin-plugin-custom-tabs) | `12.0.0.0` (net10.0, `Jellyfin.Controller/Model/Common/Data 12.0.0`) | patched — build OK, NOT YET tested live | Re-checked upstream 2026-09-10, no JF12 release since scaffolding. GUID unchanged: `fbacd0b6-fd46-4a05-b0a4-2045d6a135b0`. Retargeted via the existing `JellyfinVersion` MSBuild property (now `12.0.0`); added a `JellyfinVersionSpecific/12.0/StartupServiceHelper.cs` (copy of the 10.11 variant — it already used the modern enum-based `TaskTriggerInfoType` API, not the removed string-const one) since the csproj's per-version conditionals would otherwise strip the helper class entirely and fail to compile. Zero other code changes needed — plugin doesn't touch any of the JF12 breaking APIs (search/user-manager/item-repository/subtitles/etc). Built clean, 0 errors. Packaged: `dist/custom-tabs/custom-tabs-0.2.0.0-jf12.zip`. manifest.json entry added. |
 | editors-choice | [lachlandcp/jellyfin-editors-choice-plugin](https://github.com/lachlandcp/jellyfin-editors-choice-plugin) | no build.yaml/meta.json — csproj: net9.0, `Jellyfin.Controller 10.11.0` | needs patch | GUID (in `Plugin.cs`): `70bb2ec1-f19e-46b5-b49a-942e6b96ebae`. |
 | opds | [jellyfin/jellyfin-plugin-opds](https://github.com/jellyfin/jellyfin-plugin-opds) | `12.0.0.0` (net10.0, `Jellyfin.Controller 12.*-*`) | upstream shipped it | build.yaml and .csproj already target JF12 on the default branch. No patch needed — just track upstream releases. |
 | opensubtitles | [jellyfin/jellyfin-plugin-opensubtitles](https://github.com/jellyfin/jellyfin-plugin-opensubtitles) | `12.0.0.0` (net10.0, `Jellyfin.Controller 12.*-*`) | upstream shipped it | build.yaml and .csproj already target JF12 on the default branch. No patch needed — just track upstream releases. |
@@ -18,6 +18,6 @@ Snapshot taken 2026-09-10, right after scaffolding. No patching has happened yet
 
 - **needs patch** — not yet started.
 - **in progress** — actively being patched.
-- **patched-untested** — compiles against JF12 but has not been loaded/tested on a real server.
+- **patched — build OK, NOT YET tested live** (aka patched-untested) — compiles against JF12 but has not been loaded/tested on a real server.
 - **patched-tested-live** — loaded and functionally verified against a real Jellyfin 12 server.
 - **upstream shipped it** — upstream already publishes a JF12-compatible build; no fork/patch needed, just consume upstream.

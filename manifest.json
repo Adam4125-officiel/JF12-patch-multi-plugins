@@ -1,0 +1,21 @@
+[
+  {
+    "guid": "fbacd0b6-fd46-4a05-b0a4-2045d6a135b0",
+    "name": "Custom Tabs",
+    "description": "Add custom tabs to the horizontal bar at the top of the Jellyfin web client, e.g. for a \"Requests\" tab. Requires the File Transformation plugin.",
+    "overview": "Add custom tabs to the top navigation bar of the Jellyfin web client",
+    "owner": "IAmParadox27",
+    "category": "General",
+    "imageUrl": "https://raw.githubusercontent.com/Adam4125-officiel/JF12-patch-multi-plugins/main/plugins/custom-tabs/src/logo.png",
+    "versions": [
+      {
+        "version": "0.2.0.0",
+        "changelog": "Personal JF12 patch (unofficial): retarget to net10.0 and bump Jellyfin.Common/Jellyfin.Model/Jellyfin.Controller/Jellyfin.Data to 12.0.0. Added a JellyfinVersionSpecific/12.0 startup-trigger helper (reused from the existing 10.11 implementation, which already used the modern enum-based TaskTriggerInfoType API). No functional changes vs upstream 0.2.0.0. Build-verified only, not yet tested against a live JF12 server.",
+        "targetAbi": "12.0.0.0",
+        "sourceUrl": "https://raw.githubusercontent.com/Adam4125-officiel/JF12-patch-multi-plugins/main/dist/custom-tabs/custom-tabs-0.2.0.0-jf12.zip",
+        "checksum": "e6e7325e362386e33591514cc2b5fe7f",
+        "timestamp": "2026-09-10T10:58:13Z"
+      }
+    ]
+  }
+]
